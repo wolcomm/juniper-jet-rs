@@ -7,12 +7,45 @@ description = "Rust client for the Juniper JET gRPC API"
 license = "MIT"
 repository = "https://github.com/wolcomm/juniper-jet-rs"
 readme = "README.md"
+keywords = ["juniper", "junos", "jet"]
 categories = ["network-programming"]
 
 [lib]
 name = "jet"
 
+[features]
+default = ["latest"]
+latest = ["junos-23-1"]
+junos-23-1 = []
+junos-22-4 = []
+junos-22-3 = []
+junos-22-2 = []
+# junos-22-1 is not available in the junos-extension-toolkit repo
+junos-21-4 = []
+junos-21-3 = []
+junos-21-2 = []
+junos-21-1 = []
+junos-20-4 = []
+junos-20-3 = []
+junos-20-2 = []
+junos-20-1 = []
+junos-19-4 = []
+junos-19-3 = []
+junos-19-2 = []
+junos-19-1 = []
+
+[package.metadata.docs.rs]
+rustdoc-args = ["--cfg", "docsrs"]
+all-features = true
+
 [dependencies]
+tonic = "^0.9"
+prost = "^0.11"
+
+[build-dependencies]
+glob = "^0.3"
+regex = "^1.0"
+tonic-build = "^0.9"
 
 [dev-dependencies]
 version-sync = "^0.9"

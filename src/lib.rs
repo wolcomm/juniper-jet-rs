@@ -42,6 +42,61 @@
 // docs.rs build config
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
 
+#[cfg(feature = "latest")]
+/// Generated JET gRPC service definitions for the latest Junos version.
+pub mod latest {
+    pub use super::junos_23_1::jnx;
+}
+
+junos_versions! {
+    "23.1": #[cfg(feature = "junos-23-1")] junos_23_1,
+    "22.4": #[cfg(feature = "junos-22-4")] junos_22_4,
+    "22.3": #[cfg(feature = "junos-22-3")] junos_22_3,
+    "22.2": #[cfg(feature = "junos-22-2")] junos_22_2,
+    "21.4": #[cfg(feature = "junos-21-4")] junos_21_4,
+    "21.3": #[cfg(feature = "junos-21-3")] junos_21_3,
+    "21.2": #[cfg(feature = "junos-21-2")] junos_21_2,
+    "21.1": #[cfg(feature = "junos-21-1")] junos_21_1,
+    "20.4": #[cfg(feature = "junos-20-4")] junos_20_4,
+    "20.3": #[cfg(feature = "junos-20-3")] junos_20_3,
+    "20.2": #[cfg(feature = "junos-20-2")] junos_20_2,
+    "20.1": #[cfg(feature = "junos-20-1")] junos_20_1,
+    "19.4": #[cfg(feature = "junos-19-4")] junos_19_4,
+    "19.3": #[cfg(feature = "junos-19-3")] junos_19_3,
+    "19.2": #[cfg(feature = "junos-19-2")] junos_19_2,
+    "19.1": #[cfg(feature = "junos-19-1")] junos_19_1,
+}
+
+macro_rules! junos_versions {
+    ( $( $version:literal: $( #[$attr:meta] )+ $mod:ident ),* $(,)? ) => {
+        $(
+            $( #[$attr] )+
+            #[allow(clippy::doc_markdown)]
+            #[allow(clippy::future_not_send)]
+            #[allow(clippy::missing_const_for_fn)]
+            #[allow(clippy::missing_errors_doc)]
+            #[allow(clippy::module_name_repetitions)]
+            #[allow(clippy::must_use_candidate)]
+            #[allow(clippy::struct_excessive_bools)]
+            #[allow(clippy::tabs_in_doc_comments)]
+            #[allow(clippy::use_self)]
+            #[allow(clippy::wildcard_imports)]
+            #[allow(unused_results)]
+            #[allow(unused_qualifications)]
+            #[allow(missing_copy_implementations)]
+            #[allow(missing_docs)]
+            #[allow(variant_size_differences)]
+            #[doc = "Generated JET gRPC service definitions for Junos `"]
+            #[doc = $version]
+            #[doc = "`."]
+            pub mod $mod {
+                include!(concat!(env!("OUT_DIR"), "/", stringify!($mod), "/jnx.jet.rs"));
+            }
+        )*
+    };
+}
+use junos_versions;
+
 // silence unused dev-dependency warnings
 #[cfg(test)]
 mod deps {
