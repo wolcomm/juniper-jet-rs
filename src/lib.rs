@@ -81,6 +81,8 @@ macro_rules! junos_versions {
             #[allow(clippy::tabs_in_doc_comments)]
             #[allow(clippy::use_self)]
             #[allow(clippy::wildcard_imports)]
+            #[allow(rustdoc::invalid_html_tags)]
+            #[allow(rustdoc::broken_intra_doc_links)]
             #[allow(unused_results)]
             #[allow(unused_qualifications)]
             #[allow(missing_copy_implementations)]
