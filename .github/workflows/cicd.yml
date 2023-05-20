@@ -8,7 +8,9 @@ jobs:
 
   lint:
     name: lint
-    uses: wolcomm/.github/.github/workflows/rust-lint.yml@master
+    uses: wolcomm/.github/.github/workflows/rust-lint.yml@os-dependencies
+    with:
+      build-dependencies: "protobuf-compiler"
 
   test:
     name: test
@@ -22,10 +24,11 @@ jobs:
         include:
           - toolchain: nightly
             args: --doc
-    uses: wolcomm/.github/.github/workflows/rust-test.yml@master
+    uses: wolcomm/.github/.github/workflows/rust-test.yml@os-dependencies
     with:
       toolchain: ${{ matrix.toolchain }}
       args: ${{ matrix.args }}
+      build-dependencies: "protobuf-compiler"
 
   publish:
     name: publish
@@ -34,5 +37,7 @@ jobs:
     needs:
       - lint
       - test
-    uses: wolcomm/.github/.github/workflows/rust-publish.yml@explicit-package
+    uses: wolcomm/.github/.github/workflows/rust-publish.yml@os-dependencies
+    with:
+      build-dependencies: "protobuf-compiler"
     secrets: inherit
