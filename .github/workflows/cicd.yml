@@ -29,6 +29,7 @@ jobs:
       toolchain: ${{ matrix.toolchain }}
       args: ${{ matrix.args }}
       build-dependencies: "protobuf-compiler"
+    secrets: inherit
 
   publish:
     name: publish
