@@ -24,7 +24,7 @@ jobs:
         include:
           - toolchain: nightly
             args: --doc
-    uses: wolcomm/.github/.github/workflows/rust-test.yml@codecov-token
+    uses: wolcomm/.github/.github/workflows/rust-test.yml@master
     with:
       toolchain: ${{ matrix.toolchain }}
       args: ${{ matrix.args }}
