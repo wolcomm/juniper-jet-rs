@@ -1,6 +1,7 @@
 use std::env;
 use std::error::Error;
 use std::fs;
+use std::io;
 use std::path::PathBuf;
 
 use glob::glob;
@@ -28,7 +29,10 @@ impl JunosVersion {
         let path = env::var("OUT_DIR")
             .map(PathBuf::from)
             .map(|base| base.join(format!("junos_{}_{}", self.major, self.minor)))?;
-        fs::create_dir(&path)?;
+        fs::create_dir(&path).or_else(|err| match err.kind() {
+            io::ErrorKind::AlreadyExists => Ok(()),
+            _ => Err(err),
+        })?;
         Ok(path)
     }
 
