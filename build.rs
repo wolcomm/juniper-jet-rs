@@ -40,12 +40,19 @@ impl JunosVersion {
         let includes = self.paths("")?;
         let protos = self.paths("*.proto")?;
 
+        // configure prost source code generator
+        let config = {
+            let mut config = prost_build::Config::new();
+            config.disable_comments([".jnx.jet.routing.base.AsPath"]);
+            config
+        };
+
         // compile the protobuf definitions into rust source code
         tonic_build::configure()
             .build_server(false)
             .out_dir(out_dir)
             .include_file("jnx.jet.rs")
-            .compile(&protos, &includes)?;
+            .compile_with_config(config, &protos, &includes)?;
 
         Ok(())
     }
