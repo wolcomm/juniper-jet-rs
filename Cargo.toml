@@ -39,7 +39,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 all-features = true
 
 [dependencies]
-tonic = "^0.9"
+tonic = "^0.10"
 prost = "^0.11"
 
 [build-dependencies]
@@ -55,7 +55,7 @@ log = "^0.4"
 rpassword = "^7.0"
 simple_logger = { version = "^4.0", features = ["stderr"] }
 tokio = { version = "^1.0", features = ["rt-multi-thread", "macros"] }
-tonic = { version = "^0.9", features = ["tls"] }
+tonic = { version = "^0.10", features = ["tls"] }
 version-sync = "^0.9"
 
 [[example]]
